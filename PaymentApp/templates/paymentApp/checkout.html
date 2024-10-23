@@ -1,0 +1,398 @@
+
+
+
+{% extends 'store/base.html' %}
+
+{% load static %}
+{% block content %}
+
+<!-- Checkout section -->
+<section class="gi-checkout-section py-[40px] text-[14px] max-[767px]:py-[30px]">
+    <h2 class="hidden">Checkout Page</h2>
+    <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px] relative">
+        <div class="flex flex-wrap w-full">
+            <!-- Sidebar Area Start -->
+            <div class="gi-checkout-rightside px-[12px] min-[992px]:w-[33.33%] w-full">
+                <div class="gi-sidebar-wrap border-[1px] border-solid border-[#eee] mb-[30px] p-[15px] rounded-[5px]">
+                    <!-- Sidebar Summary Block -->
+                    <div class="gi-sidebar-block">
+                        <div class="gi-sb-title">
+                            <h3 class="gi-sidebar-title text-[20px] max-[1199px]:text-[18px] font-semibold tracking-[0] mb-[0] relative text-[#4b5966] leading-[1.2]">Summary</h3>
+                        </div>
+                        <div class="gi-sb-block-content mt-[15px]">
+                            <div class="gi-checkout-summary">
+                                <div class="flex justify-between items-center mb-[10px]">
+                                    <span class="text-left text-[#777] text-[14px] leading-[24px] tracking-[0]">Sub-Total</span>
+                                    <span class="text-right text-[#4b5966] text-[15px] leading-[24px] font-medium">${{ order.sub_total }}</span>
+                                </div>
+                                <div class="flex justify-between items-center mb-[10px]">
+                                    <span class="text-left text-[#777] text-[14px] leading-[24px] tracking-[0]">Delivery Charges</span>
+                                    <span class="text-right text-[#4b5966] text-[15px] leading-[24px] font-medium">${{ order.shipping_charge }}</span>
+                                </div>
+                                <div class="flex justify-between items-center mb-[10px]">
+                                    <span class="text-left text-[#777] text-[14px] leading-[24px] tracking-[0]">Coupon Discount</span>
+                                    <span class="text-right text-[#4b5966] text-[15px] leading-[24px] font-medium">${{ order.coupon_total|floatformat:2 }}</span>
+                                </div>
+                                <div class="flex justify-between items-center mb-[10px]">
+                                    <span class="text-left text-[#777] text-[14px] leading-[24px] tracking-[0]">Coupan Discount</span>
+                                    <span class="text-right text-[#4b5966] text-[15px] leading-[24px] font-medium"><a class="gi-checkout-coupan text-[#5caf90] text-[14px] font-medium">Apply Coupan</a></span>
+                                </div>
+                                <div class="gi-checkout-coupan-content hidden flex justify-between items-center mb-[10px]">
+                                    <form class="gi-checkout-coupan-form flex border-[1px] border-solid border-[#eee] p-[5px] rounded-[5px]" name="gi-checkout-coupan-form" method="post" action="{% url 'apply_coupon' %}">
+                                        {% csrf_token %}
+                                        <input class="gi-coupan inline-block align-top leading-[35px] h-[35px] w-full text-[#777] text-[14px] border-[0] bg-transparent text-left pl-[10px] pr-[10px] tracking-[0.5px] rounded-[5px] outline-[0]" type="text" required="" placeholder="Enter Your Coupan Code" name="coupon_code">
+                                        <button type="submit" class="gi-coupan-btn gi-btn-2 text-[16px] text-center px-[15px] transition-all duration-[0.3s] ease-in-out font-medium bg-[#5caf90] text-[#fff] rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]">Apply</button>
+                                    </form>
+                                </div>
+                                <div class="gi-checkout-summary-total border-t-[1px] border-solid border-[#eee] pt-[19px] mb-[0] mt-[16px] flex justify-between items-center">
+                                    <span class="text-left text-[16px] font-semibold text-[#4b5966] tracking-[0] font-manrope">Total Amount</span>
+                                    <span class="text-right text-[16px] font-semibold text-[#4b5966] font-manrope">${{ order.total_amount|floatformat:2 }}</span>
+                                </div>
+                            </div>
+                            <div class="gi-checkout-pro">
+                                {% for i in order_items %}
+                                <div class="w-full mb-[15px]">
+                                    <div class="gi-product-inner transition-all duration-[0.3s] ease-in-out cursor-pointer flex flex-col overflow-hidden border-[1px] border-solid border-[#eee] rounded-[5px]">
+                                        <div class="gi-pro-image-outer transition-all duration-[0.3s] delay-[0s] ease z-[11] relative">
+                                            <div class="gi-pro-image overflow-hidden">
+                                                <a href="product-left-sidebar.html" class="image relative block overflow-hidden pointer-events-none">
+                                                    {% if i.product.image %}
+                                                        <img class="main-image max-w-full transition-all duration-[0.3s] ease delay-[0s]" src="{{ i.product.image.url }}" alt="Product">
+                                                    {% endif %}
+                                                    {% if i.product.hover_image %}
+                                                        <img class="hover-image absolute z-[1] top-[0] left-[0] opacity-[0] transition-all duration-[0.3s] ease delay-[0s]" src="{{ i.product.hover_image.url }}" alt="Product">
+                                                    {% endif %}
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="gi-pro-content h-full p-[20px] relative z-[10] flex flex-col text-left border-t-[1px] border-solid border-[#eee]">
+                                            <h5 class="gi-pro-title h-full mb-[10px] text-[16px]">
+                                                <a href="product-left-sidebar.html" class="block text-[14px] leading-[22px] font-normal text-[#4b5966] tracking-[0.85px] capitalize font-Poppins hover:text-[#5caf90]">{{ i.product.title }}</a>
+                                            </h5>
+                                            <div class="gi-pro-rating mb-[10px] opacity-[0.7] relative">
+                                                <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left mr-[3px]"></i>
+                                                <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left mr-[3px]"></i>
+                                                <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left mr-[3px]"></i>
+                                                <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left mr-[3px]"></i>
+                                                <i class="gicon gi-star text-[14px] text-[#777] mr-[3px] float-left mr-[3px]"></i>
+                                            </div>
+                                            <span class="gi-price">
+                                                {% if i.product.discount_price %}
+                                                <span class="old-price text-[14px] text-[#777] line-through">${{ i.product.price }}</span>
+                                                <span class="new-price text-[#4b5966] font-bold text-[14px] mr-[7px]">${{ i.product.discount_price }}</span>
+                                                {% else %}
+                                                <span class="new-price text-[#4b5966] font-bold text-[14px] mr-[7px]">${{ i.product.price }}</span>
+                                                {% endif %}
+                                                    
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sidebar Summary Block -->
+                </div>
+
+                {% comment %} <div class="gi-sidebar-wrap gi-checkout-del-wrap border-[1px] border-solid border-[#eee] mb-[30px] p-[15px] rounded-[5px]">
+                    <!-- Sidebar Summary Block -->
+                    <div class="gi-sidebar-block">
+                        <div class="gi-sb-title">
+                            <h3 class="gi-sidebar-title text-[20px] max-[1199px]:text-[18px] font-semibold tracking-[0] mb-[0] relative text-[#4b5966] leading-[1.2]">Delivery Method</h3>
+                        </div>
+                        <div class="gi-sb-block-content mt-[15px]">
+                            <div class="gi-checkout-del">
+                                <div class="gi-del-desc text-[#777] text-[14px] font-light leading-[24px] mb-[15px] block leading-[0]">Please select the preferred shipping method to use on this order.</div>
+                                <form action="#">
+                                    <span class="gi-del-option flex">
+                                        <span class="w-[50%]">
+                                            <span class="gi-del-opt-head text-[#4b5966] text-[15px] font-medium leading-[1] tracking-[0] mb-[10px] block">Free Shipping</span>
+                                            <input type="radio" id="del1" name="radio-group" checked>
+                                            <label for="del1" class="relative pl-[26px] cursor-pointer leading-[16px] inline-block text-[#777] tracking-[0] mb-[15px]">Rate - $0 .00</label>
+                                        </span>
+                                        <span class="w-[50%]">
+                                            <span class="gi-del-opt-head text-[#4b5966] text-[15px] font-medium leading-[1] tracking-[0] mb-[10px] block">Flat Rate</span>
+                                            <input type="radio" id="del2" name="radio-group">
+                                            <label for="del2" class="relative pl-[26px] cursor-pointer leading-[16px] inline-block text-[#777] tracking-[0] mb-[15px]">Rate - $5.00</label>
+                                        </span>
+                                    </span>
+                                    <span class="gi-del-commemt block mt-[12px]">
+                                        <span class="gi-del-opt-head mb-[8px] text-[#4b5966] text-[15px] font-medium leading-[1] tracking-[0] block">Add Comments About Your Order</span>
+                                        <textarea name="your-commemt" placeholder="Comments" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] h-[100px] py-[10px] px-[15px] mb-[0] w-full outline-[0] text-[14px] block rounded-[5px]"></textarea>
+                                    </span>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sidebar Summary Block -->
+                </div>
+                <div class="gi-sidebar-wrap gi-checkout-pay-wrap border-[1px] border-solid border-[#eee] mb-[30px] p-[15px] rounded-[5px]">
+                    <!-- Sidebar Payment Block -->
+                    <div class="gi-sidebar-block">
+                        <div class="gi-sb-title">
+                            <h3 class="gi-sidebar-title text-[20px] max-[1199px]:text-[18px] font-semibold tracking-[0] mb-[0] relative text-[#4b5966] leading-[1.2]">Payment Method</h3>
+                        </div>
+                        <div class="gi-sb-block-content mt-[15px]">
+                            <div class="gi-checkout-pay">
+                                <div class="gi-pay-desc text-[#777] text-[14px] font-light leading-[24px] mb-[15px] block tracking-[0]">Please select the preferred payment method to use on this order.</div>
+                                <form action="#">
+                                    <span class="gi-pay-option">
+                                        <span>
+                                            <input type="radio" id="pay1" name="radio-group" checked>
+                                            <label for="pay1" class="relative pl-[26px] cursor-pointer leading-[16px] inline-block text-[#777] tracking-[0]">Cash On Delivery</label>
+                                        </span>
+                                    </span>
+                                    <span class="gi-pay-commemt">
+                                        <span class="gi-pay-opt-head mb-[8px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] block">Add Comments About Your Order</span>
+                                        <textarea class="bg-transparent border-[1px] border-solid border-[#eee] h-[110px] py-[10px] px-[15px] mb-[0] w-full outline-[0] text-[14px] block rounded-[5px]" name="your-commemt" placeholder="Comments"></textarea>
+                                    </span>
+                                    <span class="gi-pay-agree relative block mt-[20px]">
+                                        <input class="absolute opacity-[0] cursor-pointer z-[999] top-[0] left-[0] h-[15px] w-[15px] outline-[0]" type="checkbox" value="">
+                                        <a href="#" class="ml-[27px] block text-[#777] text-[14px] mt-[0] leading-[18px] font-light tracking-[0] cursor-pointer">I have read and agree to the <span class="text-[#4b5966] font-medium">Terms & Conditions.</span></a>
+                                        <span class="checked absolute top-[0] left-[0] h-[15px] w-[15px] bg-[#fff] border-[1px] border-solid border-[#ededed] rounded-[4px]"></span>
+                                    </span>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sidebar Payment Block -->
+                </div>
+                <div class="gi-sidebar-wrap gi-check-pay-img-wrap border-[1px] border-solid border-[#eee] p-[15px] rounded-[5px]">
+                    <!-- Sidebar Payment Block -->
+                    <div class="gi-sidebar-block">
+                        <div class="gi-sb-title">
+                            <h3 class="gi-sidebar-title text-[20px] font-semibold tracking-[0] mb-[0] relative text-[#4b5966] leading-[1.2] max-[1199px]:text-[18px]">Payment Method</h3>
+                        </div>
+                        <div class="gi-sb-block-content mt-[15px]">
+                            <div class="gi-check-pay-img-inner flex justify-between w-full flex-wrap">
+                                <div class="gi-check-pay-img">
+                                    <img src="{% static "assets/img/hero-bg/payment.png" %}" class="w-full" alt="payment">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sidebar Payment Block -->
+                </div> {% endcomment %}
+            </div>
+            <div class="gi-checkout-leftside px-[12px] min-[992px]:w-[66.66%] w-full max-[991px]:mt-[30px]">
+                <!-- checkout content Start -->
+                <div class="gi-checkout-content">
+                    <div class="gi-checkout-inner">
+                        <div class="gi-checkout-wrap pb-[3px] p-[30px] border-[1px] border-solid border-[#eee] bg-[#fff] rounded-[5px] mb-[40px]">
+                            <div class="gi-checkout-block gi-check-bill">
+                                <h3 class="gi-checkout-title mb-[26px] leading-[1.2] text-[20px] font-semibold tracking-[0] relative block text-[#4b5966] font-Montserrat max-[575px]:text-[18px]">Billing Details</h3>
+                                <div class="gi-bl-block-content">
+                                    <div class="gi-check-subtitle mb-[10px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Checkout Options</div>
+                                    <form action="" method="get" id="shipping-request">
+                                        <span class="gi-bill-option mb-[32px] block">
+                                            <span class="mr-[45px]">
+                                                <input type="radio" id="bill1" value="True" name="shipping_data" onclick="document.getElementById('shipping-request').submit()" {% if shipping_data %}checked{% endif %}>
+                                                <label for="bill1" class="relative pl-[26px] cursor-pointer leading-[16px] inline-block text-[#777] tracking-[0] mb-[15px]">I want to use an existing address</label>
+                                            </span>
+                                            <span class="mr-[45px]">
+                                                <input type="radio" id="bill2" value="" name="shipping_data" onclick="document.getElementById('shipping-request').submit()" {% if shipping_data == '' %}checked{% endif %}>
+                                                <label for="bill2" class="relative pl-[26px] cursor-pointer leading-[16px] inline-block text-[#777] tracking-[0] mb-[15px]">I want to use new address</label>
+                                            </span>
+                                        </span>
+                                    </form>
+                                    <div class="gi-check-bill-form mb-[2px]">
+                                        <form action="" method="post" class="flex flex-row flex-wrap mx-[-15px]">
+                                            {% csrf_token %}
+                                            <span class="gi-bill-wrap gi-bill-half w-[50%] px-[15px]">
+                                                <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Name*</label>
+                                                <input type="text" name="name" placeholder="Enter your name" value="{% if shipping_data %}{{ shipping_data.name }}{% else %}{{ request.user.full_name }}{% endif %}" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]" required>
+                                            </span>
+                                            <span class="gi-bill-wrap gi-bill-half w-[50%] px-[15px]">
+                                                <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Phone Number*</label>
+                                                <input type="phone" name="phone" placeholder="Enter your Phone number" value="{% if shipping_data %}{{ shipping_data.phone }}{% else %}{{ request.user.phone }}{% endif %}" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]" required>
+                                            </span>
+                                            <span class="gi-bill-option mb-[32px] block">
+                                                <span class="mr-[45px]">
+                                                    <input type="radio" id="insideDhaka" name="type" value="Inside Dhaka" {% if shipping_data.type == "Inside Dhaka" %}checked{% else %}{% if 'dhaka' in request.user.profile.address or 'Dhaka' in request.user.profile.address %}checked{% endif %}{% endif %}>
+                                                    <label for="insideDhaka" class="relative pl-[26px] cursor-pointer leading-[16px] inline-block text-[#777] tracking-[0] mb-[15px]">Inside Dhaka (80)Tk </label>
+                                                </span>
+                                                <span class="mr-[45px]">
+                                                    <input type="radio" id="outsideDhaka" name="type" value="Outside Dhaka" {% if shipping_data.type == "Outside Dhaka" %}checked{% endif %}>
+                                                    <label for="outsideDhaka" class="relative pl-[26px] cursor-pointer leading-[16px] inline-block text-[#777] tracking-[0] mb-[15px]">Outside Dhaka (160)Tk </label>
+                                                </span>
+                                            </span>
+                                            <span class="gi-bill-wrap w-full px-[15px]">
+                                                <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Address</label>
+                                                <input type="text" name="address" placeholder="Address" value="{% if shipping_data %}{{ shipping_data.address|safe }}{% else %}{{ request.user.profile.address|safe }}{% endif %}" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]">
+                                            </span>
+
+                                            <span class="gi-bill-option mb-[32px] block">
+                                                <span class="mr-[45px]">
+                                                    <input type="radio" id="payment_type" name="payment_type" value="Cash On Delivery" {% if shipping_data.order.payment_type == "Cash On Delivery" %}checked{% else %}checked{% endif %}>
+                                                    <label for="payment_type" class="relative pl-[26px] cursor-pointer leading-[16px] inline-block text-[#777] tracking-[0] mb-[15px]">Cash On Delivery</label>
+                                                </span>
+                                                <span class="mr-[45px]">
+                                                    <input type="radio" id="payment_type1" name="payment_type" value="Bkash" {% if shipping_data.order.payment_type == "Bkash" %}checked{% endif %}>
+                                                    <label for="payment_type1" class="relative pl-[26px] cursor-pointer leading-[16px] inline-block text-[#777] tracking-[0] mb-[15px]">Bkash</label>
+                                                </span>
+                                                <span class="mr-[45px]">
+                                                    <input type="radio" id="payment_type2" name="payment_type" value="Nagad" {% if shipping_data.order.payment_type == "Nagad" %}checked{% endif %}>
+                                                    <label for="payment_type2" class="relative pl-[26px] cursor-pointer leading-[16px] inline-block text-[#777] tracking-[0] mb-[15px]">Nagad</label>
+                                                </span>
+                                                <span class="mr-[45px]">
+                                                    <input type="radio" id="payment_type3" name="payment_type" value="Rocket" {% if shipping_data.order.payment_type == "Rocket" %}checked{% endif %}>
+                                                    <label for="payment_type3" class="relative pl-[26px] cursor-pointer leading-[16px] inline-block text-[#777] tracking-[0] mb-[15px]">Rocket</label>
+                                                </span>
+                                                <span class="mr-[45px]">
+                                                    <input type="radio" id="payment_type4" name="payment_type" value="Upay" {% if shipping_data.order.payment_type == "Upay" %}checked{% endif %}>
+                                                    <label for="payment_type4" class="relative pl-[26px] cursor-pointer leading-[16px] inline-block text-[#777] tracking-[0] mb-[15px]">Upay</label>
+                                                </span>
+                                            </span>
+                                            {% comment %} <span class="gi-bill-wrap gi-bill-half w-[50%] px-[15px]">
+                                                <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">City *</label>
+                                                <span class="gi-bl-select-inner relative flex w-full h-[50px] border-[1px] border-solid border-[#eee] text-[14px] p-[0] mb-[27px] rounded-[5px]">
+                                                    <select name="gi_select_city" id="gi-select-city" class="gi-bill-select">
+                                                        <option selected disabled>City</option>
+                                                        <option value="1">City 1</option>
+                                                        <option value="2">City 2</option>
+                                                        <option value="3">City 3</option>
+                                                        <option value="4">City 4</option>
+                                                        <option value="5">City 5</option>
+                                                    </select>
+                                                </span>
+                                            </span>
+                                            <span class="gi-bill-wrap gi-bill-half w-[50%] px-[15px]">
+                                                <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Post Code</label>
+                                                <input type="text" name="postalcode" placeholder="Post Code" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]">
+                                            </span>
+                                            <span class="gi-bill-wrap gi-bill-half w-[50%] px-[15px]">
+                                                <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Country *</label>
+                                                <span class="gi-bl-select-inner relative flex w-full h-[50px] border-[1px] border-solid border-[#eee] text-[14px] p-[0] mb-[27px] rounded-[5px]">
+                                                    <select name="gi_select_country" id="gi-select-country" class="gi-bill-select">
+                                                        <option selected disabled>Country</option>
+                                                        <option value="1">Country 1</option>
+                                                        <option value="2">Country 2</option>
+                                                        <option value="3">Country 3</option>
+                                                        <option value="4">Country 4</option>
+                                                        <option value="5">Country 5</option>
+                                                    </select>
+                                                </span>
+                                            </span>
+                                            <span class="gi-bill-wrap gi-bill-half w-[50%] px-[15px]">
+                                                <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Region State</label>
+                                                <span class="gi-bl-select-inner relative flex w-full h-[50px] border-[1px] border-solid border-[#eee] text-[14px] p-[0] mb-[27px] rounded-[5px]">
+                                                    <select name="gi_select_state" id="gi-select-state" class="gi-bill-select">
+                                                        <option selected disabled>Region/State</option>
+                                                        <option value="1">Region/State 1</option>
+                                                        <option value="2">Region/State 2</option>
+                                                        <option value="3">Region/State 3</option>
+                                                        <option value="4">Region/State 4</option>
+                                                        <option value="5">Region/State 5</option>
+                                                    </select>
+                                                </span>
+                                            </span> {% endcomment %}
+                                            <span class="gi-check-order-btn flex flex-end p-[0]">
+                                                <button type="submit" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]">Place Order</button>
+                                            </span>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <!--cart content End -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Checkout section End -->
+
+<!-- New product section -->
+<section class="gi-new-product py-[40px] max-[767px]:py-[30px]">
+    <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px] relative">
+        <div class="flex flex-wrap w-full overflow-hidden mb-[-24px]">
+            <div class="gi-new-prod-section w-full">
+                <div class="gi-products">
+                    <div class="section-title-2 w-full mb-[20px] pb-[20px] flex flex-col justify-center items-center" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="200">
+                        <h2 class="gi-title mb-[0] font-manrope text-[26px] font-semibold text-[#4b5966] relative inline p-[0] capitalize leading-[1]">New <span class="text-[#5caf90]">Arrivals</span></h2>
+                        <p class="max-w-[400px] mt-[15px] text-[14px] text-[#777] text-center leading-[23px]">Browse The Collection of Top Products</p>
+                    </div>
+                    <div class="gi-new-block " data-aos="fade-up" data-aos-duration="2000" data-aos-delay="300">
+                        <div class="new-product-carousel owl-carousel gi-product-slider">
+                            {% for i in products %}
+                                <div class="gi-product-content h-full pb-[24px] px-[12px] flex max-[575px]:w-full max-[575px]:m-auto">
+                                    <div class="gi-product-inner transition-all duration-[0.3s] ease-in-out cursor-pointer flex flex-col overflow-hidden border-[1px] border-solid border-[#eee] rounded-[5px]">
+                                        <div class="gi-pro-image-outer transition-all duration-[0.3s] delay-[0s] ease z-[11] relative">
+                                            <div class="gi-pro-image overflow-hidden">
+                                                <a href="{% url 'product_details' i.id %}" class="image relative block overflow-hidden pointer-events-none">
+                                                    <span class="label veg max-[991px]:hidden">
+                                                        <span class="dot"></span>
+                                                    </span>
+                                                    {% if i.image %}
+                                                        <img class="main-image max-w-full transition-all duration-[0.3s] ease delay-[0s]" src="{{ i.image.url }}" alt="Product">
+                                                    {% endif %}
+                                                    {% if i.hover_image %}
+                                                        <img class="hover-image absolute z-[1] top-[0] left-[0] opacity-[0] transition-all duration-[0.3s] ease delay-[0s]" src="{{ i.hover_image.url }}" alt="Product">
+                                                    {% endif %}
+                                                </a>
+                                                <span class="flags flex flex-col p-[0] uppercase absolute top-[10px] right-[10px] z-[2]">
+                                                    <span class="sale px-[10px] py-[5px] text-[11px] font-medium leading-[12px] text-left uppercase flex items-center bg-[#ff7070] text-[#fff] tracking-[0.5px] relative rounded-[5px]">Sale</span>
+                                                </span>
+                                                <div class="gi-pro-actions transition-all duration-[0.3s] ease-in-out absolute z-[9] left-[0] right-[0] bottom-[-10px] max-[991px]:opacity-[1] max-[991px]:bottom-[10px] flex flex-row items-center justify-center my-[0] mx-auto opacity-0">
+                                                    <a href="{% url 'add_to_wishlist' %}?product_id={{ i.id }}" class="gi-btn-group wishlist transition-all duration-[0.3s] ease-in-out h-[30px] w-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px]" title="Wishlist">
+                                                        <i class="fi-rr-heart transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0)" class="gi-btn-group quickview transition-all duration-[0.3s] ease-in-out h-[30px] w-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px] modal-toggle">
+                                                        <i class="fi-rr-eye transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0)" class="gi-btn-group compare transition-all duration-[0.3s] ease-in-out h-[30px] w-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px]" title="Compare">
+                                                        <i class="fi fi-rr-arrows-repeat transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i>
+                                                    </a>
+                                                    <form action="{% url 'add_to_cart' %}" method="post">
+                                                        {% csrf_token %}
+                                                            <input type="hidden" name="product_id" id="" value="{{ i.id }}">
+                                                            <input type="hidden" name="quantity" id="" value="1">
+                                                            <input type="hidden" name="index" id="" value="True">
+                                                            <button type="submit" title="Add To Cart" class="gi-btn-group add-to-cart transition-all duration-[0.3s] ease-in-out h-[30px] w-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px]">
+                                                                <i class="fi-rr-shopping-basket transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i>
+                                                            </button>        
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gi-pro-content h-full p-[20px] relative z-[10] flex flex-col text-left border-t-[1px] border-solid border-[#eee]">
+                                            <a href="{% url 'product_category_page' i.category.id %}">
+                                                <h6 class="gi-pro-stitle mb-[10px] font-normal text-[#999] text-[13px] leading-[1.2] capitalize">{{ i.category }}</h6>
+                                            </a>
+                                            <h5 class="gi-pro-title h-full mb-[10px] text-[16px]">
+                                                <a href="{% url 'product_details' i.id %}" class="block text-[14px] leading-[22px] font-normal text-[#4b5966] tracking-[0.85px] capitalize font-Poppins hover:text-[#5caf90]">{{ i.title }}</a>
+                                            </h5>
+                                            <div class="gi-pro-rat-price mt-[5px] mb-[0] flex flex-col">
+                                                <span class="gi-pro-rating mb-[10px] opacity-[0.7] relative">
+                                                    <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left mr-[3px]"></i>
+                                                    <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left mr-[3px]"></i>
+                                                    <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left mr-[3px]"></i>
+                                                    <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left mr-[3px]"></i>
+                                                    <i class="gicon gi-star text-[14px] text-[#777] mr-[3px] float-left mr-[3px]"></i>
+                                                </span>
+                                                <span class="gi-price">
+                                                    {% if i.discount_price %}
+                                                        <span class="new-price text-[#4b5966] font-bold text-[14px] mr-[7px]">${{ i.discount_price }}</span>
+                                                        <span class="old-price text-[14px] text-[#777] line-through">${{ i.price }}</span>
+                                                    {% else %}
+                                                        <span class="old-price text-[14px] text-[#777] line-through">${{ i.price }}</span>
+                                                    {% endif %}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 
+<!-- New product section End -->
+
+{% endblock content %}

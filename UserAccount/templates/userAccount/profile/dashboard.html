@@ -1,0 +1,16 @@
+{% extends 'store/base.html' %}
+
+{% load static %}
+{% block content %}
+<div class="w-11/12 mx-auto md:flex gap-4 py-10">
+    <!-- left sight -->
+    {% include 'userAccount/profile/include/left-side.html' %}
+
+    <!-- right sight -->
+    <div class="w-full md:w-3/4 border border-red-500">
+        <div class="">
+            <p class="text-7xl">Dashboard</p>
+        </div>
+    </div>
+</div>
+{% endblock content %}

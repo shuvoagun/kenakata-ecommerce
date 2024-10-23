@@ -1,0 +1,72 @@
+{% extends 'store/base.html' %}
+
+{% load static %}
+{% block content %}
+<div class="w-11/12 mx-auto md:flex gap-4 py-10">
+    <!-- left sight -->
+    {% include 'userAccount/profile/include/left-side.html' %}
+
+    <!-- right sight start-->
+    <div class="w-full md:w-3/4 border border-red-500">
+        <div class="p-1">
+            <p class="text-5xl  bg-sky-700 text-black align-bottom text-center border-b-2"><b>Order History</b></p>
+        </div>
+        <!--order list start-->
+        <div class="table-content cart-table-content p-1">
+            <table class="w-full bg-[#fff] ">
+                <thead class="max-[767px]:border-[0] max-[767px]:h-[1px] max-[767px]:m-[-1px] max-[767px]:overflow-hidden max-[767px]:p-[0] max-[767px]:absolute max-[767px]:w-[1px]">
+                    <tr class="bg-[#fff] border-b-[2px] border-solid border-[#eee]">
+                        <th class="text-black text-[15px] font-medium pt-[15px] pb-[12px] px-[14px] text-left capitalize align-middle whitespace-nowrap leading-[1] tracking-[0]">Order ID</th>
+                        <th class="text-black text-[15px] font-medium pt-[15px] pb-[12px] px-[14px] text-left capitalize align-middle whitespace-nowrap leading-[1] tracking-[0]">Order date</th>
+                        <th class="text-black text-[15px] font-medium pt-[15px] pb-[12px] px-[14px] text-left capitalize align-middle whitespace-nowrap leading-[1] tracking-[0]">Payment Type</th>
+                        <th class="text-black text-[15px] font-medium pt-[15px] pb-[12px] px-[14px] text-left capitalize align-middle whitespace-nowrap leading-[1] tracking-[0]">Status</th>
+                        <th class="text-black text-[15px] font-medium pt-[15px] pb-[12px] px-[14px] text-left capitalize align-middle whitespace-nowrap leading-[1] tracking-[0]">Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                {% for o in order %}
+                <tbody>
+                    <tr class="border-b-[1px] border-solid border-[#eee] max-[767px]:border-[1px] max-[767px]:block max-[767px]:mb-[15px]">
+                        <td data-label="Order id" class="gi-cart-pro-price text-[#4b5966] font-medium text-[15px] py-[15px] px-[14px] text-left max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
+                            <span class="amount tracking-[0.02rem]">0000000{{o.id}}</span>
+                        </td>
+                        <td data-label="Product" class="gi-cart-pro-name w-[30%] text-[#4b5966] text-[16px] py-[15px] px-[14px] text-left max-[767px]:w-full max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
+                            <a href="javascript:void(0)" class="text-[#777] font-normal text-[14px] flex leading-[1.5] tracking-[0.6px] items-center">Date:{{o.ordered_date}}
+                            </a>
+                        </td>
+                        <td data-label="Items" class="gi-cart-pro-price text-[#4b5966] font-medium text-[15px] py-[15px] px-[14px] text-left max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
+                            <span class="amount tracking-[0.02rem]">$ {{o.payment_type}}</span>
+                        </td>
+                        <td data-label="Status" class="gi-cart-pro-subtotal text-[#4b5966] text-[15px] font-medium py-[15px] px-[14px] text-left max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">{{o.status}}</td>
+                        <td data-label="Total" class="gi-cart-pro-subtotal text-[#4b5966] text-[15px] font-medium py-[15px] px-[14px] text-left max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">${{o.amount}}</td>
+                        <td data-label="Remove" class="gi-cart-pro-remove text-[#4b5966] w-[90px] text-[16px] mr-8 py-[15px] px-[32px] text-right max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
+                            <a href="{% url 'remove_order' o.id %}" class="text-[22px] my-[0] mx-auto"><i class="gicon gi-trash-o"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+        <!--order list start-->
+
+
+
+
+
+
+
+        <!-- <div class="mx-40 mt-20  bg-sky">
+            <ul>
+                {% for o in order %}
+                <li class="text-xl font-semibold mb-8 border-b-2 "><span>*Order ID:-{{o.id}}</span><br>
+                    <span> *Name: {{o.user.full_name}}</span> 
+                    <a href="{% url 'remove_order' o.id %}"  class="py-2 px-5 bg-violet-500 text-white items-end font-semibold rounded-full shadow-md hover:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-400 focus:ring-opacity-75"  
+                      >Delete</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div> -->
+
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,212 @@
+{% extends 'store/base.html' %}
+
+{% load static %}
+{% block content %}
+<div class="w-11/12 mx-auto md:flex gap-4 py-10">
+    <!-- left sight -->
+    {% include 'userAccount/profile/include/left-side.html' %}
+
+    <!-- right sight Start -->
+    <div class="w-full md:w-3/4 border border-slate-100 rounded shadow-xl">
+        <div class="p-4">
+            <div class="">
+                <p class="text-3xl">Profile</p>
+                <div class="flex flex-wrap w-full"></div>
+                <div class="gi-register-wrapper max-w-[934px] my-[0] mx-auto px-[12px]">
+                    <div
+                    class="gi-register-container border-[1px] border-solid border-[#eee] p-[30px] text-left bg-[#fff] rounded-[5px] max-[575px]:p-[15px]">
+                    <div class="gi-register-form">
+                        <form action="" method="post" enctype="multipart/form-data"
+                        class="flex flex-row flex-wrap mx-[-15px]">
+                        {% csrf_token %}
+                        <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
+                            <label
+                            class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Full
+                            Name*</label>
+                            <input type="text" name="full_name" placeholder="Enter your full name"
+                            value="{{ user_form.instance.full_name }}"
+                            class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]"
+                                        required>
+                                </span>
+                                <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
+                                    <label
+                                        class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Email*</label>
+                                    <input type="email" name="email" placeholder="Enter your email add..."
+                                        value="{{ user_form.instance.email }}"
+                                        class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]"
+                                        required>
+                                </span>
+                                <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
+                                    <label
+                                        class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Phone
+                                        Number*</label>
+                                    <input type="text" name="phone" placeholder="Enter your phone number"
+                                        value="{{ user_form.instance.phone }}"
+                                        class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]">
+                                </span>
+                                <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
+                                    <label
+                                        class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Date of birth</label>
+                                    <input type="" name="date_of_birth" placeholder="Enter your Date of birth"
+                                        value="{{ request.user.profile.date_of_birth }}"
+                                        class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]">
+                                </span>
+
+
+                                <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
+                                    <label class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Division</label>
+                                    <select name="division" id="division" class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]">
+                                        <option >Select Division</option>
+                                        {% for d in divisions %}
+                                            <option value="{{ d.id }}" {% if request.user.profile.division.id == d.id %}selected{% endif %}>{{ d.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </span>
+                                <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
+                                    <label class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">District</label>
+                                    <select name="district" id="district" class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]">
+                                        <option >Select District</option>
+                                        {% if request.user.profile.district %}
+                                            {% for d in districts %}
+                                                <option value="{{ d.id }}" {% if request.user.profile.district.id == d.id %}selected{% endif %}>{{ d.name }}</option>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </select>
+                                </span>
+                                <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
+                                    <label class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Sub District</label>
+                                    <select name="sub_district" id="sub_district" class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]">
+                                        <option >Select Sub District</option>
+                                        {% if request.user.profile.sub_district %}
+                                            {% for d in sub_districts %}
+                                                <option value="{{ d.id }}" {% if request.user.profile.sub_district.id == d.id %}selected{% endif %}>{{ d.name }}</option>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </select>
+                                </span>
+
+
+                                <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
+                                    <label
+                                        class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Address</label>
+                                    <input type="text" name="adress" placeholder="Enter your Address"
+                                        value="{{ request.user.profile.address }}"
+                                        class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]">
+                                </span>
+                                <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
+                                    <label class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Gender</label>
+                                    <select name="gender" class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]">
+                                        <option value="" {% if request.user.profile.gender == "" %}selected{% endif %}>Select your Gender</option>
+                                        <option value="Male" {% if request.user.profile.gender == "Male" %}selected{% endif %}>Male</option>
+                                        <option value="Female" {% if request.user.profile.gender == "Female" %}selected{% endif %}>Female</option>
+                                        <option value="Other" {% if request.user.profile.gender == "Other" %}selected{% endif %}>Other</option>
+                                    </select>
+                                </span>
+                                
+                                <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
+                                    <label
+                                        class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">
+                                        Image</label>
+                                    <input type="file" name="image"
+                                        class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]">
+                                    </span>
+
+                                <span
+                                    class="gi-register-wrap gi-register-btn flex flex-row justify-between items-center w-full px-[15px] max-[767px]:flex-col ">
+                                    <button type="submit"
+                                        class="gi-btn-1 py-[8px] px-[15px] bg-[#4b5966] text-[#fff] border-[0] transition-all duration-[0.3s] ease-in-out overflow-hidden text-center text-[14px] font-semibold relative rounded-[5px] max-[767px]:mt-[15px] hover:bg-[#5caf90]">Submit</button>
+                                </span>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <p class="text-3xl">Change Password</p>
+                <div class="flex flex-wrap w-full"></div>
+                <div class="gi-register-wrapper max-w-[934px] my-[0] mx-auto px-[12px]">
+                    <div
+                    class="gi-register-container border-[1px] border-solid border-[#eee] p-[30px] text-left bg-[#fff] rounded-[5px] max-[575px]:p-[15px]">
+                    <div class="gi-register-form">
+                            <form action="{% url 'change_password' %}" method="post" enctype="multipart/form-data"
+                            class="flex flex-row flex-wrap mx-[-15px]">
+                            {% csrf_token %}
+                            <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
+                                    <label
+                                    class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">
+                                    Current Password*</label>
+                                    <input type="password" name="old_password" placeholder="Enter Current Password"
+                                    class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]"
+                                    required>
+                                </span>
+                                <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
+                                    <label
+                                        class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">New Password*</label>
+                                    <input type="password" name="new_password1" placeholder="Enter new password"
+                                        class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]"
+                                        required>
+                                </span>
+                                <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
+                                    <label
+                                    class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">
+                                        Confirm Password*</label>
+                                    <input type="password" name="new_password2" placeholder="Enter Confirm Password"
+                                        class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]">
+                                    </span>
+                                    
+                                <span
+                                    class="gi-register-wrap gi-register-btn flex flex-row justify-between items-center w-full px-[15px] max-[767px]:flex-col ">
+                                    <button type="submit"
+                                        class="gi-btn-1 py-[8px] px-[15px] bg-[#4b5966] text-[#fff] border-[0] transition-all duration-[0.3s] ease-in-out overflow-hidden text-center text-[14px] font-semibold relative rounded-[5px] max-[767px]:mt-[15px] hover:bg-[#5caf90]">Submit</button>
+                                </span>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- right sight End -->
+</div>
+<script>
+    const division = document.getElementById('division');
+    const district = document.getElementById('district');
+    const subDistrict = document.getElementById('sub_district');
+
+    // Load districts when division changes
+    division.addEventListener('change', function() {
+        const divisionId = this.value;
+        fetch(`/load-districts/?division_id=${divisionId}`)
+            .then(response => response.text())
+            .then(data => {
+                district.innerHTML = data; // Populate district dropdown
+                subDistrict.innerHTML = '<option>Select Sub District</option>'; // Reset sub-district
+                // Trigger change on district to load sub-districts
+                district.dispatchEvent(new Event('change'));
+            });
+    });
+    // Load sub-districts when district changes
+    district.addEventListener('change', function() {
+        const districtId = this.value;
+        fetch(`/load-sub-districts/?district_id=${districtId}`)
+            .then(response => response.text())
+            .then(data => {
+                subDistrict.innerHTML = data; // Populate sub-district dropdown
+            });
+    });
+    // Function to trigger initial loading of dropdowns
+    function initializeDropdowns() {
+        const initialDivisionId = division.value;
+        if (initialDivisionId) {
+            division.dispatchEvent(new Event('change')); // Load districts based on initial value
+        }
+        const initialDistrictId = district.value;
+        if (initialDistrictId) {
+            district.dispatchEvent(new Event('change')); // Load sub-districts based on initial value
+        }
+    }
+
+    // Call the initialize function on page load
+    document.addEventListener('DOMContentLoaded', initializeDropdowns);
+</script>
+{% endblock content %}

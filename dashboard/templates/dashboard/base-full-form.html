@@ -1,0 +1,33 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load tailwind_filters %}
+
+{% block content %}
+
+    <div class="container-fluid group-data-[content=boxed]:max-w-boxed mx-auto mt-5 mb-5">    
+
+        <div class="card">
+            <div class="card-body">
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.media }}
+                    <div class="flex justify-between">
+                        <h6 class="mb-4 text-15">Add/Edit Form</h6>
+                        {% if from_user %}
+                        <a href="{% url 'user_change_password'  form.instance.id %}" class="mb-4 text-15 btn bg-purple-500 text-white">Change Password</a>
+                        {% endif %}
+                    </div>
+
+                    <div class="grid grid-cols-1">
+                        {{ form|crispy }}
+                    </div>
+                    <div class="">
+                        <input type="submit" class="font-semibold bg-zink-900 text-white px-8 py-2 rounded-lg cursor-pointer" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div><!--end card-->
+    </div>
+    <!-- container-fluid -->
+
+{% endblock content %}

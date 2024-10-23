@@ -1,0 +1,462 @@
+{%   extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}{{ product.title }}{% endblock title %}
+
+{% block content %}
+<!-- Sart Single Product -->
+<section class="gi-single-product py-[40px] max-[767px]:py-[30px] relative bg-[#fff] transition-all duration-[0.5s] ease">
+    <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
+        <div class="w-full flex flex-row px-[12px]">
+            <div class="gi-pro-rightside gi-common-rightside w-full">
+                <!-- Single product content Start -->
+                <div class="single-pro-block">
+                    <div class="single-pro-inner">
+                        <div class="w-full flex flex-wrap">
+                            <div class="single-pro-img single-pro-img-no-sidebar w-[40%] relative pr-[12px] max-[991px]:w-full max-[991px]:max-w-[500px] max-[991px]:m-auto max-[991px]:px-[12px] max-[420px]:px-[0]">
+                                <div class="single-product-scroll p-[15px] sticky top-[30px] rounded-[5px] border-[1px] border-solid border-[#eee]">
+                                    <div class="single-product-cover overflow-hidden cursor-zoom-in rounded-[5px]">
+                                        <div class="single-slide zoom-image-hover">
+                                            <img class="img-responsive h-full w-full" src="{{ product.image.url }}" alt="">
+                                        </div>
+                                        <div class="single-slide zoom-image-hover">
+                                            <img class="img-responsive h-full w-full" src="{{ product.hover_image.url }}" alt="">
+                                        </div>
+
+                                        
+                                        {% if product.img1 %}
+                                        <div class="single-slide zoom-image-hover">
+                                            <img class="img-responsive h-full w-full" src="{{ product.img1.url }}" alt="">
+                                        </div>
+                                        {% endif %}
+                                        {% if product.img2 %}
+                                        <div class="single-slide zoom-image-hover">
+                                            <img class="img-responsive h-full w-full" src="{{ product.img2.url }}" alt="">
+                                        </div>
+                                        {% endif %}
+                                        {% if product.img3 %}
+                                        <div class="single-slide zoom-image-hover">
+                                            <img class="img-responsive h-full w-full" src="{{ product.img3.url }}" alt="">
+                                        </div>
+                                        {% endif %}
+                                        {% if product.img4 %}
+                                        <div class="single-slide zoom-image-hover">
+                                            <img class="img-responsive h-full w-full" src="{{ product.img4.url }}" alt="">
+                                        </div>
+                                        {% endif %}
+                                        {% if product.img5 %}
+                                        <div class="single-slide zoom-image-hover">
+                                            <img class="img-responsive h-full w-full" src="{{ product.img5.url }}" alt="">
+                                        </div>
+                                        {% endif %}
+                                            
+                                        {% comment %} <div class="single-slide zoom-image-hover">
+                                            <img class="img-responsive h-full w-full" src="{% static "assets/img/product-images/2_1.jpg" %}" alt="">
+                                        </div>
+                                        <div class="single-slide zoom-image-hover">
+                                            <img class="img-responsive h-full w-full" src="{% static "assets/img/product-images/3_1.jpg" %}" alt="">
+                                        </div>
+                                        <div class="single-slide zoom-image-hover">
+                                            <img class="img-responsive h-full w-full" src="{% static "assets/img/product-images/1_1.jpg" %}" alt="">
+                                        </div>
+                                        <div class="single-slide zoom-image-hover">
+                                            <img class="img-responsive h-full w-full" src="{% static "assets/img/product-images/5_1.jpg" %}" alt="">
+                                        </div> {% endcomment %}
+                                    </div>
+                                    <div class="single-nav-thumb w-full overflow-hidden">
+                                        <div class="single-slide px-[11px] pt-[11px]">
+                                            <img class="img-responsive h-full w-full border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[5px]" src="{{ product.image.url }}" alt="">
+                                        </div>
+                                        <div class="single-slide px-[11px] pt-[11px]">
+                                            <img class="img-responsive h-full w-full border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[5px]" src="{{ product.hover_image.url }}" alt="">
+                                        </div>
+                                        
+                                        {% if product.img1 %}
+                                        <div class="single-slide px-[11px] pt-[11px]">
+                                            <img class="img-responsive h-full w-full border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[5px]" src="{{ product.img1.url }}" alt="">
+                                        </div>
+                                        {% endif %}
+                                        {% if product.img2 %}
+                                        <div class="single-slide px-[11px] pt-[11px]">
+                                            <img class="img-responsive h-full w-full border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[5px]" src="{{ product.img2.url }}" alt="">
+                                        </div>
+                                        {% endif %}
+                                        {% if product.img3 %}
+                                        <div class="single-slide px-[11px] pt-[11px]">
+                                            <img class="img-responsive h-full w-full border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[5px]" src="{{ product.img3.url }}" alt="">
+                                        </div>
+                                        {% endif %}
+                                        {% if product.img4 %}
+                                        <div class="single-slide px-[11px] pt-[11px]">
+                                            <img class="img-responsive h-full w-full border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[5px]" src="{{ product.img4.url }}" alt="">
+                                        </div>
+                                        {% endif %}
+                                        {% if product.img5 %}
+                                        <div class="single-slide px-[11px] pt-[11px]">
+                                            <img class="img-responsive h-full w-full border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[5px]" src="{{ product.img5.url }}" alt="">
+                                        </div>
+                                        {% endif %}
+                                            
+                                        {% comment %} <div class="single-slide px-[11px] pt-[11px]">
+                                            <img class="img-responsive h-full w-full border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[5px]" src="{% static "assets/img/product-images/2_1.jpg" %}" alt="">
+                                        </div>
+                                        <div class="single-slide px-[11px] pt-[11px]">
+                                            <img class="img-responsive h-full w-full border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[5px]" src="{% static "assets/img/product-images/3_1.jpg" %}" alt="">
+                                        </div>
+                                        <div class="single-slide px-[11px] pt-[11px]">
+                                            <img class="img-responsive h-full w-full border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[5px]" src="{% static "assets/img/product-images/1_1.jpg" %}" alt="">
+                                        </div>
+                                        <div class="single-slide px-[11px] pt-[11px]">
+                                            <img class="img-responsive h-full w-full border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[5px]" src="{% static "assets/img/product-images/5_1.jpg" %}" alt="">
+                                        </div> {% endcomment %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="single-pro-desc single-pro-desc-no-sidebar w-[60%] pl-[12px] max-[991px]:pl-[0] max-[991px]:mt-[30px] max-[991px]:w-full">
+                                <div class="single-pro-content">
+                                    <h5 class="gi-single-title text-[#4b5966] text-[22px] capitalize mb-[20px] block font-Poppins font-medium leading-[35px] tracking-[0.02rem] max-[1199px]:text-[20px] max-[1199px]:leading-[33px] max-[767px]:text-[18px] max-[767px]:text-[18px] max-[767px]:leading-[31px]">{{ product.title }} </h5>
+                                    <div class="gi-single-rating-wrap flex mb-[14px] items-center">
+                                        <div class="gi-single-rating pr-[15px] leading-[17px]">
+                                            <i class="gicon gi-star fill text-[#f27d0c] float-left text-[14px] mr-[3px]"></i>
+                                            <i class="gicon gi-star fill text-[#f27d0c] float-left text-[14px] mr-[3px]"></i>
+                                            <i class="gicon gi-star fill text-[#f27d0c] float-left text-[14px] mr-[3px]"></i>
+                                            <i class="gicon gi-star fill text-[#f27d0c] float-left text-[14px] mr-[3px]"></i>
+                                            <i class="gicon gi-star-o text-[#b2b2b2] float-left text-[14px] mr-[3px]"></i>
+                                        </div>
+                                        <span class="gi-read-review text-[#999] leading-[17px]">
+                                            |&nbsp;&nbsp;<a href="#gi-spt-nav-review" class="text-[#999] text-[14px] leading-[20px] hover:text-[#5caf90]">992 Ratings</a>
+                                        </span>
+                                    </div>
+                                    <div class="gi-single-price-stoke mb-[15px] pt-[15px] pb-[15px] flex justify-between">
+                                        <div class="gi-single-price flex flex-col">
+                                            {% if product.discount_price %}
+                                                <div class="final-price mb-[15px] text-[#4b5966] font-semibold text-[22px] leading-[32px] font-Poppins tracking-[0] max-[1199px]:text-[20px]">${{ product.discount_price }}
+                                                    <span class="price-des ml-[15px] text-[#5caf90] font-medium text-[18px] tracking-[0.02rem]">-{{ product.discount_percentage|floatformat:2 }}%</span>
+                                                </div>
+                                                <div class="mrp text-[#777]">M.R.P. : <span class="text-[#999] line-through">${{ product.price }}</span></div>
+                                            {% else %}
+                                                <div class="final-price mb-[15px] text-[#4b5966] font-semibold text-[22px] leading-[32px] font-Poppins tracking-[0] max-[1199px]:text-[20px]">${{ product.price }}
+                                                </div>
+                                            {% endif %}
+                                                
+                                        </div>
+                                        <div class="gi-single-stoke flex flex-col">
+                                            <span class="gi-single-sku mb-[15px] text-[18px] leading-[32px] text-[#4b5966] font-semibold tracking-[0.02rem]">Code: {{ product.product_code }} </span>
+                                            <span class="gi-single-ps-title leading-[1] text-[16px] text-[#5caf90] tracking-[0]">
+                                                {% if product.stock >= 1 %}
+                                                    IN STOCK
+                                                {% else %}
+                                                    OUT of STOCK
+                                                {% endif %}
+                                                    
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="gi-single-desc mb-[12px] text-[#777] text-[14px] tracking-[0] break-all leading-[26px] font-Poppins">{{ product.short_description|safe }}</div>
+
+                                    <div class="gi-pro-variation mb-[20px] pb-[5px]">
+                                        <div class="gi-pro-variation-inner gi-pro-variation-size text-[16px] font-semibold text-[#4b5966] flex-col mb-[15px] flex">
+                                            <span class="mb-[10px] text-[#202020] font-medium text-[15px] leading-[1.1] tracking-[0.04rem] uppercase font-Poppins block">Size:</span>
+                                            <div class="gi-pro-variation-content">
+                                                <ul>
+                                                    {% for s in product.size.all %}
+                                                    <li class="{% if forloop.first %}active{% endif %} h-[22px] mr-2 font-normal transition-all duration-[0.3s] ease-in-out py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]"><span class="">{{ s.name }}</span></li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="gi-pro-variation mb-[20px] pb-[5px]">
+                                        <div class="gi-pro-variation-inner gi-pro-variation-size text-[16px] font-semibold text-[#4b5966] flex-col mb-[15px] flex">
+                                            <span class="mb-[10px] text-[#202020] font-medium text-[15px] leading-[1.1] tracking-[0.04rem] uppercase font-Poppins block">Color:</span>
+                                            <div class="gi-pro-variation-content">
+                                                <ul>
+                                                    {% for c in product.color.all %}
+                                                    <li class="{% if forloop.first %}active{% endif %} h-[22px] mr-2 font-normal transition-all duration-[0.3s] ease-in-out py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]"><span class="">{{ c.name }}</span></li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form action="{% url 'add_to_cart' %}" method="post">
+                                        {% csrf_token %}
+                                        <div class="gi-single-qty flex flex-wrap w-full m-[-5px]">
+                                            <div class="qty-plus-minus w-[120px] h-[40px] p-[10px] border-[1px] border-solid border-[#eee] overflow-hidden m-[5px] relative flex items-center justify-between rounded-[5px]">
+                                                <input class="qty-input" type="text" name="quantity" value="1">
+                                            </div>
+                                            <input type="hidden" name="product_id" id="" value="{{ product.id }}">
+                                            {% if product.stock >= 1 %}
+                                                <div class="gi-single-cart">
+                                                    <button type="submit" class="btn btn-primary gi-btn-1 flex h-[40px] leading-[50px] text-center text-[14px] m-[5px] py-[10px] px-[15px] uppercase justify-center bg-[#4b5966] text-[#fff] transition-all duration-[0.3s] ease-in-out relative rounded-[5px] items-center min-w-[160px] font-semibold tracking-[0.02rem] border-[0] hover:bg-[#5caf90] hover:text-[#fff]">Add To Cart</button>
+                                                </div>
+                                            {% else %}
+                                                <div class="gi-single-cart">
+                                                    <button type="button" class="btn bg-red-900 gi-btn-1 flex h-[40px] leading-[50px] text-center text-[14px] m-[5px] py-[10px] px-[15px] uppercase justify-center text-[#fff] transition-all duration-[0.3s] ease-in-out relative rounded-[5px] items-center min-w-[160px] font-semibold tracking-[0.02rem] border-[0] hover:bg-red-900 hover:text-[#fff]">OUT of STOCK</button>
+                                                </div>
+                                            {% endif %}
+
+                                            <div class="gi-single-wishlist m-[5px]">
+                                                <a href="{% url 'add_to_wishlist' %}?product_id={{ product.id }}" class="gi-btn-group wishlist w-[40px] h-[40px] flex items-center justify-center transition-all duration-[0.3s] ease delay-[0s] text-[#17181c] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px] hover:text-[#fff] hover:bg-[#5caf90] hover:border-[#5caf90]" title="Wishlist">
+                                                    <i class="fi-rr-heart transition-all duration-[0.3s] ease-in-out text-[#4b5966] leading-[0]"></i>
+                                                </a>
+                                            </div>
+                                            <div class="gi-single-quickview m-[5px]">
+                                                <a href="javascript:void(0)" class="gi-btn-group quickview w-[40px] h-[40px] flex items-center justify-center transition-all duration-[0.3s] ease delay-[0s] text-[#17181c] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px] hover:text-[#fff] hover:bg-[#5caf90] hover:border-[#5caf90] modal-toggle">
+                                                    <i class="fi-rr-eye transition-all duration-[0.3s] ease-in-out text-[#4b5966] leading-[0]"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Single product content End -->
+                <!-- Add More and get discount content Start -->
+                <div class="single-add-more my-[40px] max-[575px]:my-[30px]">
+                    <div class="gi-add-more-slider owl-carousel">
+                        {% for i in products %}
+                        {% if product.category.id %}
+                        <div class="add-more-item h-full p-[15px] flex flex-row border-[1px] border-solid border-[#eee] rounded-[5px] bg-[#f8f8fb]">
+                            <a href="{% url 'add_to_wishlist' %}?product_id={{ i.id }}&home=True" class="gi-btn-2 py-[5px] px-[10px] absolute top-[5px] right-[5px] opacity-[0] transition-all duration-[0.3s] ease-in-out text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]">+</a>
+                            <div class="add-more-img mr-[15px] relative">
+                                {% if i.image %}
+                                <img src="{{ i.image.url }}" alt="product" class="w-[75px] rounded-[5px] border-[1px] border-solid border-[#eee]">
+                                {% endif %}
+                            </div>
+                            <div class="add-more-info flex flex-col">
+                                <a herf="{% url 'product_details' i.id %}" class="text-[#777] block text-[13px] leading-[20px] font-medium tracking-[0.85px] capitalize font-Poppins mb-[6px]">{{ i.title }}</a>
+                                <span class="gi-pro-rating mb-[5px]">
+                                    <i class="gicon gi-star fill inline-block text-[12px] text-[#f27d0c] float-left mr-[3px]"></i>
+                                    <i class="gicon gi-star fill inline-block text-[12px] text-[#f27d0c] float-left mr-[3px]"></i>
+                                    <i class="gicon gi-star fill inline-block text-[12px] text-[#f27d0c] float-left mr-[3px]"></i>
+                                    <i class="gicon gi-star inline-block text-[12px] float-left text-[#777] mr-[3px]"></i>
+                                    <i class="gicon gi-star inline-block text-[12px] float-left text-[#777] mr-[3px]"></i>
+                                </span>
+                                <span class="gi-price">
+                                    {% if i.discount_price %}
+                                        <span class="new-price text-[15px]">${{ i.discount_price }}</span>
+                                        <span class="old-price ml-[5px] text-[14px] text-[#777] line-through">${{ i.price }}</span>
+                                    {% else %}
+                                        <span class="new-price text-[15px]">${{ i.discount_price }}</span>
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+
+                    </div>
+                </div>
+                <!-- Single product accordion start -->
+                <div class="gi-accordion style-1 gi-single-pro-tab-content overflow-hidden bg-[#fff] text-left p-[30px] border-[1px] border-solid border-[#eee] text-[#202020] text-[18px] tracking-[0] leading-[1.6] rounded-[5px]">
+                    <div class="gi-accordion-item border-[#eee] overflow-hidden mb-[10px]">
+                        <h4 class="gi-accordion-header m-[0] py-[15px] pl-[15px] pr-[35px] bg-[#f8f8fb] text-[#4b5966] text-[16px] leading-[28px] font-medium relative font-Poppins border-[1px] border-solid border-[#eee] rounded-[5px] tracking-[0.01rem] max-[767px]:text-[15px]">
+                            Product Detail
+                        </h4>
+                        <div class="gi-accordion-body show py-[15px] text-[14px] text-[#777] leading-[24px] hidden">
+                            <div class="gi-single-pro-tab-desc">
+                                <p class="mb-[15px] text-[14px] tracking-[0] text-[#777] leading-[28px] font-normal">{{ product.detail_description|safe }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gi-accordion-item border-[#eee] overflow-hidden mb-[10px]">
+                        <h4 class="gi-accordion-header m-[0] py-[15px] pl-[15px] pr-[35px] bg-[#f8f8fb] text-[#4b5966] text-[16px] leading-[28px] font-medium relative font-Poppins border-[1px] border-solid border-[#eee] rounded-[5px] tracking-[0.01rem] max-[767px]:text-[15px]">
+                            Specifications
+                        </h4>
+                        <div class="gi-accordion-body py-[15px] text-[14px] text-[#777] leading-[24px] hidden">
+                            <div class="gi-single-pro-tab-moreinfo">
+                                <p class="text-[#777] font-Poppins text-[14px] font-normal leading-[28px] tracking-[0.02rem] mb-[16px]">{{ product.specific_description|safe }}</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gi-accordion-item border-[#eee] overflow-hidden">
+                        <h4 class="gi-accordion-header m-[0] py-[15px] pl-[15px] pr-[35px] bg-[#f8f8fb] text-[#4b5966] text-[16px] leading-[28px] font-medium relative font-Poppins border-[1px] border-solid border-[#eee] rounded-[5px] tracking-[0.01rem] max-[767px]:text-[15px]">
+                            Reviews
+                        </h4>
+                        <div class="gi-accordion-body pt-[15px] text-[14px] text-[#777] leading-[24px] hidden">
+                            <div id="gi-spt-nav-review" class="a-tab-pane">
+                                <div class="row flex flex-wrap w-full">
+                                    <div class="gi-t-review-wrapper mt-[10px]">
+                                        <div class="gi-t-review-item flex mb-[25px] pb-[25px] border-b-[1px] border-solid border-[#eee]">
+                                            <div class="gi-t-review-avtar basis-[50px] shrink-[0] grow-[0] mr-[15px]">
+                                                <img src="{% static "assets/img/user/1.jpg" %}" alt="user" class="max-w-full rounded-[5px]">
+                                            </div>
+                                            <div class="gi-t-review-content">
+                                                <div class="gi-t-review-top flex flex-col mb-[10px]">
+                                                    <div class="gi-t-review-name text-[15px] m-[0] leading-[1.5] font-medium block text-[#4b5966]">Moris Willson</div>
+                                                    <div class="gi-t-review-rating text-[16px] mt-[5px]">
+                                                        <i class="gicon gi-star fill inline-block text-[#f27d0c] float-left text-[13px] mr-[3px]"></i>
+                                                        <i class="gicon gi-star fill inline-block text-[#f27d0c] float-left text-[13px] mr-[3px]"></i>
+                                                        <i class="gicon gi-star fill inline-block text-[#f27d0c] float-left text-[13px] mr-[3px]"></i>
+                                                        <i class="gicon gi-star fill inline-block text-[#f27d0c] float-left text-[13px] mr-[3px]"></i>
+                                                        <i class="gicon gi-star-o inline-block text-[#b2b2b2] float-left text-[14px] mr-[3px]"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="gi-t-review-bottom">
+                                                    <p class="w-full m-[0] text-[14px] text-[#777] leading-[24px] font-normal">
+                                                        typesetting industry. Lorem Ipsum has been the industry's
+                                                        standard dummy text ever since the 1500s, when an unknown
+                                                        printer took a galley of type and scrambled it to make a
+                                                        type specimen.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gi-t-review-item flex mb-[25px] pb-[25px] border-b-[1px] border-solid border-[#eee]">
+                                            <div class="gi-t-review-avtar basis-[50px] shrink-[0] grow-[0] mr-[15px]">
+                                                <img src="{% static "assets/img/user/2.jpg" %}" alt="user" class="max-w-full rounded-[5px]">
+                                            </div>
+                                            <div class="gi-t-review-content">
+                                                <div class="gi-t-review-top flex flex-col mb-[10px]">
+                                                    <div class="gi-t-review-name text-[15px] m-[0] leading-[1.5] font-medium block text-[#4b5966]">Moris Willson</div>
+                                                    <div class="gi-t-review-rating text-[16px] mt-[5px]">
+                                                        <i class="gicon gi-star fill inline-block text-[#f27d0c] float-left text-[13px] mr-[3px]"></i>
+                                                        <i class="gicon gi-star fill inline-block text-[#f27d0c] float-left text-[13px] mr-[3px]"></i>
+                                                        <i class="gicon gi-star fill inline-block text-[#f27d0c] float-left text-[13px] mr-[3px]"></i>
+                                                        <i class="gicon gi-star-o inline-block text-[#b2b2b2] float-left text-[14px] mr-[3px]"></i>
+                                                        <i class="gicon gi-star-o inline-block text-[#b2b2b2] float-left text-[14px] mr-[3px]"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="gi-t-review-bottom">
+                                                    <p class="w-full m-[0] text-[14px] text-[#777] leading-[24px] font-normal">Lorem Ipsum has been the industry's
+                                                        standard dummy text ever since the 1500s, when an unknown
+                                                        printer took a galley of type and scrambled it to make a
+                                                        type specimen.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="gi-ratting-content w-full">
+                                        <h3 class="mb-[10px] text-[20px] font-semibold leading-[1] font-Poppins text-[#4b5966] tracking-[0.01rem]">Add a Review</h3>
+                                        <div class="gi-ratting-form">
+                                            <form action="#" class="w-full">
+                                                <div class="gi-ratting-star flex mt-[5px] mb-[25px] items-center">
+                                                    <span class="mr-[18px] text-[16px] text-[#777] tracking-[0.02rem]">Your rating:</span>
+                                                    <div class="gi-t-review-rating">
+                                                        <i class="gicon gi-star fill inline-block text-[18px] text-[#f27d0c] float-left mr-[3px]"></i>
+                                                        <i class="gicon gi-star fill inline-block text-[18px] text-[#f27d0c] float-left mr-[3px]"></i>
+                                                        <i class="gicon gi-star-o inline-block text-[18px] text-[#b2b2b2] float-left mr-[3px]"></i>
+                                                        <i class="gicon gi-star-o inline-block text-[18px] text-[#b2b2b2] float-left mr-[3px]"></i>
+                                                        <i class="gicon gi-star-o inline-block text-[18px] text-[#b2b2b2] float-left mr-[3px]"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="gi-ratting-input mb-[10px]">
+                                                    <input name="your-name" placeholder="Name" type="text" class="text-[14px] rounded-[5px] w-full  h-[50px] mb-[15px] py-[5px] px-[20px] outline-[0] border-[1px] border-solid border-[#eee] text-[#777]">
+                                                </div>
+                                                <div class="gi-ratting-input mb-[10px]">
+                                                    <input name="your-email" placeholder="Email*" type="email" class="text-[14px] rounded-[5px] w-full  h-[50px] mb-[15px] py-[5px] px-[20px] outline-[0] border-[1px] border-solid border-[#eee] text-[#777]" required>
+                                                </div>
+                                                <div class="gi-ratting-input form-submit">
+                                                    <textarea name="your-commemt" placeholder="Enter Your Comment" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] h-[150px] p-[20px] mb-[15px] w-full outline-[0] text-[14px] rounded-[5px]"></textarea>
+                                                    <button type="submit" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" value="Submit">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- product details description area end -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Single Product -->
+
+<!-- Related product section -->
+<section class="gi-new-product py-[40px] max-[767px]:py-[30px]">
+    <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px] relative">
+        <div class="flex flex-wrap w-full overflow-hidden mb-[-24px]">
+            <div class="gi-new-prod-section w-full">
+                <div class="gi-products">
+                    <div class="section-title-2 w-full mb-[20px] pb-[20px] flex flex-col justify-center items-center" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="200">
+                        <h2 class="gi-title mb-[0] font-manrope text-[26px] font-semibold text-[#4b5966] relative inline p-[0] capitalize leading-[1]">New <span class="text-[#5caf90]">Arrivals</span></h2>
+                        <p class="max-w-[400px] mt-[15px] text-[14px] text-[#777] text-center leading-[23px]">Browse The Collection of Top Products</p>
+                    </div>
+                    <div class="gi-new-block " data-aos="fade-up" data-aos-duration="2000" data-aos-delay="300">
+                        <div class="new-product-carousel owl-carousel gi-product-slider">
+                            {% for i in new_products %}
+                                <div class="gi-product-content h-full pb-[24px] px-[12px] flex max-[575px]:w-full max-[575px]:m-auto">
+                                    <div class="gi-product-inner transition-all duration-[0.3s] ease-in-out cursor-pointer flex flex-col overflow-hidden border-[1px] border-solid border-[#eee] rounded-[5px]">
+                                        <div class="gi-pro-image-outer transition-all duration-[0.3s] delay-[0s] ease z-[11] relative">
+                                            <div class="gi-pro-image overflow-hidden">
+                                                <a href="{% url 'product_details' i.id %}" class="image relative block overflow-hidden pointer-events-none">
+                                                    <span class="label veg max-[991px]:hidden">
+                                                        <span class="dot"></span>
+                                                    </span>
+                                                    {% if i.image %}
+                                                        <img class="main-image max-w-full transition-all duration-[0.3s] ease delay-[0s]" src="{{ i.image.url }}" alt="Product">
+                                                    {% endif %}
+                                                    {% if i.hover_image %}
+                                                        <img class="hover-image absolute z-[1] top-[0] left-[0] opacity-[0] transition-all duration-[0.3s] ease delay-[0s]" src="{{ i.hover_image.url }}" alt="Product">
+                                                    {% endif %}
+                                                </a>
+                                                <span class="flags flex flex-col p-[0] uppercase absolute top-[10px] right-[10px] z-[2]">
+                                                    <span class="sale px-[10px] py-[5px] text-[11px] font-medium leading-[12px] text-left uppercase flex items-center bg-[#ff7070] text-[#fff] tracking-[0.5px] relative rounded-[5px]">Sale</span>
+                                                </span>
+                                                <div class="gi-pro-actions transition-all duration-[0.3s] ease-in-out absolute z-[9] left-[0] right-[0] bottom-[-10px] max-[991px]:opacity-[1] max-[991px]:bottom-[10px] flex flex-row items-center justify-center my-[0] mx-auto opacity-0">
+                                                    <a href="{% url 'add_to_wishlist' %}?product_id={{ i.id }}" class="gi-btn-group wishlist transition-all duration-[0.3s] ease-in-out h-[30px] w-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px]" title="Wishlist">
+                                                        <i class="fi-rr-heart transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0)" class="gi-btn-group quickview transition-all duration-[0.3s] ease-in-out h-[30px] w-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px] modal-toggle">
+                                                        <i class="fi-rr-eye transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0)" class="gi-btn-group compare transition-all duration-[0.3s] ease-in-out h-[30px] w-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px]" title="Compare">
+                                                        <i class="fi fi-rr-arrows-repeat transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i>
+                                                    </a>
+                                                    <form action="{% url 'add_to_cart' %}" method="post">
+                                                        {% csrf_token %}
+                                                            <input type="hidden" name="product_id" id="" value="{{ i.id }}">
+                                                            <input type="hidden" name="quantity" id="" value="1">
+                                                            <input type="hidden" name="index" id="" value="True">
+                                                            <button type="submit" title="Add To Cart" class="gi-btn-group add-to-cart transition-all duration-[0.3s] ease-in-out h-[30px] w-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px]">
+                                                                <i class="fi-rr-shopping-basket transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i>
+                                                            </button>        
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gi-pro-content h-full p-[20px] relative z-[10] flex flex-col text-left border-t-[1px] border-solid border-[#eee]">
+                                            <a href="{% url 'product_category_page' i.category.id %}">
+                                                <h6 class="gi-pro-stitle mb-[10px] font-normal text-[#999] text-[13px] leading-[1.2] capitalize">{{ i.category }}</h6>
+                                            </a>
+                                            <h5 class="gi-pro-title h-full mb-[10px] text-[16px]">
+                                                <a href="{% url 'product_details' i.id %}" class="block text-[14px] leading-[22px] font-normal text-[#4b5966] tracking-[0.85px] capitalize font-Poppins hover:text-[#5caf90]">{{ i.title }}</a>
+                                            </h5>
+                                            <div class="gi-pro-rat-price mt-[5px] mb-[0] flex flex-col">
+                                                <span class="gi-pro-rating mb-[10px] opacity-[0.7] relative">
+                                                    <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left mr-[3px]"></i>
+                                                    <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left mr-[3px]"></i>
+                                                    <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left mr-[3px]"></i>
+                                                    <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left mr-[3px]"></i>
+                                                    <i class="gicon gi-star text-[14px] text-[#777] mr-[3px] float-left mr-[3px]"></i>
+                                                </span>
+                                                <span class="gi-price">
+                                                    {% if i.discount_price %}
+                                                        <span class="new-price text-[#4b5966] font-bold text-[14px] mr-[7px]">${{ i.discount_price }}</span>
+                                                        <span class="old-price text-[14px] text-[#777] line-through">${{ i.price }}</span>
+                                                    {% else %}
+                                                        <span class="old-price text-[14px] text-[#777] line-through">${{ i.price }}</span>
+                                                    {% endif %}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 
+<!-- Related product section End -->
+{% endblock content %}

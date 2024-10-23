@@ -1,0 +1,1 @@
+from Kenakata.wsgi import application
